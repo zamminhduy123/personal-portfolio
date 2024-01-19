@@ -2,10 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "MonumentBlack";   /*Can be any text*/
+  src: local("MonumentExtended-Black"),
+    url("../static/fonts/PPMonumentExtended-Black.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonumentRegular";   /*Can be any text*/
+  src: local("MonumentExtended"),
+    url("../static/fonts/PPMonumentExtended-Regular.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonumentLight";   /*Can be any text*/
+  src: local("MonumentExtended-Thin"),
+    url("../static/fonts/PPMonumentExtended-Light.otf") format("truetype");
+}
+
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+
+  --color-primary: #272121;
+  --color-secondary: #443737;
+  --color-tertiary: #B7AB98;
+  --color-accent: #EB5939;
+  --color-accent-strong: #FF4D00;
+  --color-error: #FF0000;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,4 +50,6 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+
+  font-family: "MonumentRegular";
 }
