@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 @font-face {
   font-family: "MonumentBlack";   /*Can be any text*/
@@ -44,12 +44,18 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: white;
 
   font-family: "MonumentRegular";
+  box-sizing: border-box;
+}
+
+.text-xxs {
+  font-size: 0.5rem;
+}
+
+#test {
+  clip-path: circle(25%);
+  position:absolute;
+  background-color:gray;
 }

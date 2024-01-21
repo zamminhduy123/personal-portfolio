@@ -17,15 +17,20 @@ const Button = (props: ButtonProps) => {
         className = "",
         type = "accent",
         size = "m",
+        fullWidth = false
     } = props;
 
-    let variantClass = "px-4 text-base rounded-xl";
+    let sizeClass = "px-4 py-2 text-sm";
+    if (size == "sm") {
+        sizeClass = "px-4 py-2 text-xs"
+    }
     let style = {
-        backgroundColor: variant == "contained" ? `var(--color-${type})` : undefined
+        backgroundColor: variant == "contained" ? `var(--color-${type})` : undefined,
+        // padding: "12px 16px"
     }
     
     return (
-        <div className={clsx(variantClass, className)} style={style}>
+        <div className={clsx(sizeClass, className, "text-center", "rounded")} style={style}>
             {props.children}
         </div>
     )
