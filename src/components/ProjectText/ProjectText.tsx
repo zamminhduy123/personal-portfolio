@@ -10,6 +10,9 @@ type ProjectTextProps = {
     titleMaxWidth?: number;
 
     extraHashTag: string[]
+    id?: number;
+    isTrigger?:boolean;
+    useExternalEvent?:boolean;
 }
 
 const ProjectText = (props : ProjectTextProps) => {
@@ -17,46 +20,55 @@ const ProjectText = (props : ProjectTextProps) => {
         title,
         subTitle,
         titleMaxWidth,
-        extraHashTag
+        extraHashTag,
+        id = 0,
+        isTrigger = false,
+        useExternalEvent = false
     } = props;
     const containerRef = React.useRef<HTMLDivElement | null>(null);
     const { contextSafe } = useGSAP({scope: containerRef});
+    const animationRef = React.useRef<gsap.core.Tween[]>([])
 
     const onMouseEnter = contextSafe(() => {
-        if (containerRef.current) {
-            // gsap.to("#extra", {height: "fit-content"})
-            gsap.to("#title", {translateY: 0})
-            gsap.to("#extra", {translateY: 0, opacity: 1, delay: 0.05})
-            gsap.to("#icon", {rotate: 45})
+        if (!animationRef.current.length) {
+            animationRef.current.push(gsap.to(`#pt-title-${id}`, {translateY: 0}))
+            animationRef.current.push(gsap.to(`#pt-extra-${id}`, {translateY: 0, opacity: 1, delay: 0.05}))
+            animationRef.current.push(gsap.to(`#pt-icon-${id}`, {rotate: 45}))
+        } else {
+            animationRef.current.forEach(anim => anim.restart())
         }
     })
     const onMouseLeave = contextSafe(() => {
-        // gsap.to("#extra", {height: 0})
-        gsap.to("#title", {translateY: extraHashTag.length * 24, delay: 0.05})
-        gsap.to("#extra", {translateY: extraHashTag.length * 12, opacity: 0})
-        gsap.to("#icon", {rotate: 0})
+        if (animationRef.current) {
+            animationRef.current.forEach(anim => anim.reverse())
+        }
     });
 
-    React.useLayoutEffect(() => {
-        gsap.set("#title", {translateY: extraHashTag.length * 24, delay: 0.05})
-        gsap.set("#extra", {translateY: extraHashTag.length * 12, opacity: 0})
-        gsap.set("#icon", {rotate: 0})
-    }, [])
+    useGSAP(() => {
+        if (useExternalEvent) {
+            if (isTrigger) {
+                onMouseEnter();
+            }
+            else {
+                onMouseLeave();
+            }
+        }
+    }, {dependencies: [isTrigger, useExternalEvent], scope: containerRef})
 
     return (
-        <div className='flex flex-col justify-end h-full w-full gap-4 cursor-default' ref={containerRef} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-            <div id="title" className="flex flex-col font-semibold">
+        <div className='flex flex-col justify-end h-full w-full gap-4 cursor-default' ref={containerRef} onMouseEnter={useExternalEvent ? undefined : onMouseEnter} onMouseLeave={useExternalEvent ? undefined : onMouseLeave}>
+            <div id={`pt-title-${id}`} className="flex flex-col font-semibold" style={{transform: `translateY(${extraHashTag.length * 24}px)`}}>
                 {subTitle ? <p className="text-xl">{subTitle}</p> : null}
                 <p className=" text-4xl" style={{maxWidth: titleMaxWidth}}>{title}</p>
             </div> 
             <div
-                id="extra"
+                id={`pt-extra-${id}`}
                 className="flex flex-col font-extralight text-sm gap-2 overflow-hidden"
-                style={{ fontFamily: "MonumentLight"}}
+                style={{ fontFamily: "MonumentLight", transform: `translateY(${extraHashTag.length * 12}px)`, opacity: 0}}
             >
-                {extraHashTag.map(item => <p>{item}</p>)}
+                {extraHashTag.map((item, idx) => <p key={`project-text-${idx}`}>{item}</p>)}
             </div>
-            <div id="icon" className="text-3xl font-semibold w-fit">↗</div>
+            <div id={`pt-icon-${id}`} className="text-3xl font-semibold w-fit rotate-0">↗</div>
         </div>
     )
 }

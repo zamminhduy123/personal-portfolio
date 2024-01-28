@@ -12,7 +12,7 @@ const Header = () => {
                 color: "var(--color-accent)"
             }}
         >
-            DUYNTM
+            DUY.NGUYEN
         </div>
         <div className='grid grid-cols-4 items-center' style={{fontSize: 9}}>
             <div className='col-start-1 flex justify-center px-4'>about</div>

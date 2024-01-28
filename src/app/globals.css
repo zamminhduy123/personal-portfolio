@@ -116,3 +116,11 @@ body {
     transform: translate(-100%, 0);
   }
 }
+#loading-name {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+#loading-name > span {
+  display: inline-block;
+  transform: translateY(100%);
+  transition: transform 0.5s;
+} 

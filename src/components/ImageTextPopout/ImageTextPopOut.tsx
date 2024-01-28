@@ -10,7 +10,7 @@ import { debounce } from 'lodash'
 type ImageTextPopOutProps = {
     textColor?: string;
     textSize?: number;
-    text: string;
+    text?: string;
 
     image: string | StaticImageData;
     showOnHover?: boolean;
