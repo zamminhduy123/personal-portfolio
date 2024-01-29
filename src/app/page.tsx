@@ -19,6 +19,7 @@ import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import React from 'react'
 import LoadingScreen from '@/screen/LoadingScreen'
+import MyAvatar from '@/components/MyAvatar'
 
 export default function Home() {
     const containerRef = React.useRef<HTMLDivElement | null>(null);
@@ -29,7 +30,7 @@ export default function Home() {
     const [isLoading, setIsLoading] = React.useState(true);
     React.useEffect(() => {
         const timeout = setTimeout(() => {
-            // setIsLoading(false);
+            setIsLoading(false);
         }, 1000);
         return () => {
             clearTimeout(timeout);
@@ -48,11 +49,11 @@ export default function Home() {
             <article
                 className={clsx(
                     "w-full h-svh flex items-center justify-center gap-32",
-                    `bg-[url('../static/background.png')]`,
+                    `bg-[url('../static/loadingbg.png')]`,
                     "bg-no-repeat bg-center bg-cover"
                 )}
             >
-                <div className="h-full flex flex-row gap-24 px-8 w-fit flex-1">
+                {/* <div className="h-full flex flex-row gap-24 px-8 w-fit flex-1">
                     <div className="flex items-end">
                         <Image alt="DUY" src={DUYsvg} width={120} />
                     </div>
@@ -67,8 +68,8 @@ export default function Home() {
                         />
                     </div>
                 </div>
-                <div className="flex justify-start items-start flex-1">
-                    <div className="flex flex-col items-end text-white text-xl gap-2">
+                <div className="flex justify-start items-start flex-1 h-full">
+                    <div className="h-full flex flex-col items-center justify-center text-white text-xl gap-2">
                         <Image
                             src={myAvatar}
                             alt="my-avatar"
@@ -82,7 +83,16 @@ export default function Home() {
                             </span>
                         </div>
                     </div>
-                </div>
+                </div> */}
+                    <div className='w-1/4 h-full overflow-clip'>
+                        <MyAvatar />
+                    </div>
+                    <div className='text-5xl font-black' style={{letterSpacing: "5px"}}>
+                        안녕하세요{","}<br/>I&apos;M{" "}
+                        <span style={{ color: "var(--color-accent)" }}>
+                        DUY NGUYEN
+                        </span>
+                    </div>
             </article>
             <article className="w-full h-svh flex items-center justify-center">
                 <DoubleText
