@@ -23,72 +23,26 @@ import avatarNoBg from '@static/avatar-no-bg.png'
 import MyAvatar from '@/components/MyAvatar'
 import LoadingScreen from '@/screen/LoadingScreen'
 
+//utils
+import { disableScroll, enableScroll } from "@utils/scroll-utils"
+
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import MainScreen from '@/screen/MainScreen'
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Home() {
     const containerRef = React.useRef<HTMLDivElement | null>(null);
     const { contextSafe } = useGSAP({ scope: containerRef });
+
     const [isOnDM1, setIsOnDM1] = React.useState(false);
-
-    const offLoadingPage = contextSafe(() => {
-        gsap.to("#loading-screen", {translateY: "-100%", duration: 1.5, ease: 'back.in(0.7)'})
-        gsap.to("#loading-name > span", {y: "100%", stagger: 0.05, delay: 0.08, duration: 0.5});
-        // gsap.to("#main-duy", {y: "-1500%", duration: 2, delay: 0.8})
-    });
-
-    React.useEffect(() => {
-        const timeout = setTimeout(() => {
-          offLoadingPage();
-        }, 1100);
-        return () => {
-          clearTimeout(timeout);
-        }
-      }, [offLoadingPage])
 
     return <main
         className={clsx(
-            "flex min-h-screen flex-col items-center justify-between relative"
+            "flex min-h-screen flex-col items-center justify-between relative",
         )}
         ref={containerRef}
     >
-        <LoadingScreen/>
-        <article
-            className={clsx(
-                "w-full h-svh flex items-center justify-center gap-32",
-                "bg-black",
-                `bg-[url('../static/loadingbg.png')]`,
-                "bg-no-repeat bg-center bg-cover"
-            )}
-        >
-            <div className='h-full flex items-center justify-between w-full' style={{ maxWidth: 640, gap: 32 }}>
-                <div className='h-full overflow-clip flex-1'>
-                    <div className='w-full h-full relative flex items-center justify-center text-white' 
-                        // onMouseEnter={() => setIsOver(true)} onMouseLeave={() => setIsOver(false)}
-                    >
-                        <div className='w-full absolute' style={{ zIndex: 2 }}>
-                            <Image src={avatarNoBg} alt='me' className='rounded-xl' />
-                        </div>
-                        <div className='absolute rotate-90' style={{zIndex: 1}}>
-                            <p id="main-duy" className={clsx("w-fit", "font-semibold", "cursor-default", "origin-center", "text-white")}
-                                style={{ fontSize: "20rem", letterSpacing: "2.5rem", boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}>
-                                <span>DUY</span>
-                                <span>DUY</span>
-                                <span>DUY</span>
-                                <span>DUY</span>
-                                <span>DUY</span>
-                            </p>
-                        </div>
-                        <div className='w-full absolute rounded'>
-                            <Image src={avatar} alt='me'className='rounded-xl' />
-                        </div>
-                    </div>
-                </div>
-                <div className='text-5xl font-black text-white flex-1' style={{ letterSpacing: "5px", lineHeight: 1.5 }}>
-                    안녕하세요{","}<br />I&apos;M{" "}
-                    <span style={{ color: "var(--color-accent)" }}>
-                        DUY
-                    </span>
-                </div>
-            </div>
-        </article>
+        <MainScreen contextSafe={contextSafe}/>
         <article className="w-full h-svh flex items-center justify-center">
             <DoubleText
                 title="about me"

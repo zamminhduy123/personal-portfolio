@@ -43,7 +43,7 @@ const LoadingScreen = (props : LoadingScreenProps) => {
                     alt="BG"
                 />
             </div>
-            <p id="loading-name" className='text-white' style={{zIndex: 21, fontSize: '2rem'}}>
+            <p id="loading-name" className='text-white text-animation-appear' style={{zIndex: 21, fontSize: '2rem'}}>
                 <span>D</span>
                 <span>U</span>
                 <span>Y</span>

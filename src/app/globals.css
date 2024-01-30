@@ -116,10 +116,10 @@ body {
     transform: translate(-100%, 0);
   }
 }
-#loading-name {
+.text-animation-appear {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
-#loading-name > span {
+.text-animation-appear > span {
   display: inline-block;
   transform: translateY(100%);
   transition: transform 0.5s;
@@ -150,7 +150,6 @@ body {
     transparent
   );
 
-  transform-origin: center;
   animation: scrollX 20s linear infinite;
 }
 .scroller__inner[data-direction=vertical] {
