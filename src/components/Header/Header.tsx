@@ -1,5 +1,6 @@
 import { Button } from '@/ui/components/Button'
 import React from 'react'
+import TurnText from '../TurnText'
 
 const Header = () => {
   return (
@@ -15,8 +16,12 @@ const Header = () => {
             DUY.NGUYEN
         </div>
         <div className='grid grid-cols-4 items-center' style={{fontSize: 9}}>
-            <div className='col-start-1 flex justify-center px-4'>about</div>
-            <div className='col-start-2 text-center px-4'>selected<br/>works</div>
+            <div className='col-start-1 flex justify-center px-4'>
+                <TurnText text="about" />
+            </div>
+            <div className='col-start-2 text-center px-4'>
+                <TurnText text={<>selected<br/>works</>} />
+            </div>
             <div className='col-start-3 col-span-2 flex justify-center px-4'>
                 <Button variant="contained" size='sm' className='w-full'>Hey</Button>
             </div>

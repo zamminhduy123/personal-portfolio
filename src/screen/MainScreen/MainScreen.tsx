@@ -21,37 +21,47 @@ const defaultAnimConfig = {
 }
 
 const MainScreen = ({ contextSafe }: Props) => {
+  const [imageLoadDone, setImageLoadDone] = React.useState(0);
+  const startRef = React.useRef(performance.now());
   
   const offLoadingPage = contextSafe(() => {
     gsap.to("#loading-screen", { translateY: "-100%", ...defaultAnimConfig })
     gsap.to("#loading-name > span", { y: "100%", stagger: 0.05, delay: 0, duration: 0.5 });
-    // gsap.fromTo("#article-1-duy", { translateX: 0 }, { translateX: "-20%", duration: 1.5, delay: 0.9 })
+    gsap.fromTo("#article-1-duy", { translateX: 0 }, { translateX: "-20%", duration: 1.5, delay: 0.9 })
     gsap.to("#article-1-hi > span",  {y: 0, stagger: 0.1, delay: 0.3, duration: 0.5, ease: "power2.in"});
+    gsap.from("#article-1-img",  { translateY: "20%", opacity: 0, delay: 0.6, duration: 0.5 });
   });
 
   React.useLayoutEffect(() => {
-    document.body.scrollTop = 0;
     disableScroll();
   }, [])
   React.useEffect(() => {
-    const timeout = setTimeout(() => {
+    const closeLoading = () => {
       offLoadingPage();
       setTimeout(() => {
         enableScroll();
       }, 1500)
-    }, 1100);
+    }
+    if (imageLoadDone == 2) {
+      if (performance.now() - startRef.current < 1500) {
+        setTimeout(() => {
+          closeLoading();
+        }, 1000)
+      } else {
+        closeLoading();
+      }
+    }
     return () => {
-      clearTimeout(timeout);
       enableScroll();
     }
-  }, [offLoadingPage])
+  }, [offLoadingPage, imageLoadDone])
 
 
   React.useEffect(() => {
     gsap.to(
       "#article-1-duy",
       {
-        translateX: "-50%",
+        translateX: "-30%",
         scrollTrigger: {
           trigger: "#article-1-duy",
           start: "center center",
@@ -64,6 +74,10 @@ const MainScreen = ({ contextSafe }: Props) => {
     );
   }, []);
 
+  const countImageLoadDone = () => {
+    setImageLoadDone(prev => prev+1);
+  }
+
 
   return (
     <>
@@ -74,14 +88,15 @@ const MainScreen = ({ contextSafe }: Props) => {
           "w-full h-svh flex items-center justify-center gap-32",
           "bg-black",
           `bg-[url('../static/loadingbg.png')]`,
-          "bg-no-repeat bg-center bg-cover"
+          "bg-no-repeat bg-center bg-cover",
+          "overflow-clip"
         )}
       >
         <div className='w-full h-full flex items-center justify-between ' style={{ maxWidth: 640, gap: 32 }}>
           <div className='w-full h-full flex-1'>
             <div className='w-full h-full relative flex items-center justify-center text-white'>
               <div className='w-full absolute' style={{ zIndex: 2 }}>
-                <Image src={avatarNoBg} alt='me' className='rounded-xl' />
+                <Image src={avatarNoBg} alt='me' className='rounded-xl' id="article-1-img" onLoad={() => countImageLoadDone()}/>
               </div>
               <div className='absolute rotate-90' style={{ zIndex: 1 }}>
                 <p id="article-1-duy" className={clsx("w-fit", "font-semibold", "cursor-default", "origin-center", "text-white")}
@@ -98,7 +113,7 @@ const MainScreen = ({ contextSafe }: Props) => {
                 </p>
               </div>
               <div className='w-full absolute rounded'>
-                <Image src={avatar} alt='me' className='rounded-xl' />
+                <Image src={avatar} alt='me' className='rounded-xl' id="article-1-img" onLoad={() => countImageLoadDone()}/>
               </div>
             </div>
           </div>

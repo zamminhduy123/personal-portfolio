@@ -36,6 +36,10 @@ export default function Home() {
 
     const [isOnDM1, setIsOnDM1] = React.useState(false);
 
+    React.useLayoutEffect(() => {
+        if (containerRef.current) containerRef.current.scrollTop = 0;
+    }, [])
+
     return <main
         className={clsx(
             "flex min-h-screen flex-col items-center justify-between relative",
@@ -217,6 +221,9 @@ export default function Home() {
                 id={1}
                 textSize={32}
             />
+        </article>
+        <article className="w-full h-svh flex items-center justify-center">
+            
         </article>
     </main>
 
