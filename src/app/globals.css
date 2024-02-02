@@ -168,3 +168,23 @@ body {
     transform: translateY(-50%);
   }
 }
+
+
+/* scroll review */
+.scroll-review-text {
+
+}
+
+.scroll-reveal-text span{
+  background-clip: text;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  animation: scroll-reveal-text linear forwards;
+  animation-timeline: view();
+}
+
+@keyframes scroll-reveal-text {
+  to {
+    background-size: 100% 100%;
+  }
+} 

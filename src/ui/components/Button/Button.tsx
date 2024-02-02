@@ -17,7 +17,7 @@ const Button = (props: ButtonProps) => {
         className = "",
         type = "accent",
         size = "m",
-        fullWidth = false
+        // fullWidth = false
     } = props;
 
     let sizeClass = "px-4 py-2 text-sm";

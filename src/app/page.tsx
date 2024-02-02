@@ -28,6 +28,7 @@ import { disableScroll, enableScroll } from "@utils/scroll-utils"
 
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MainScreen from '@/screen/MainScreen'
+import TextReviewOnScroll from '@/components/TextReviewOnScroll'
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
@@ -128,7 +129,12 @@ export default function Home() {
                     />
                 </div>
                 <div className="col-start-7 col-end-10 row-start-1 row-end-6 rounded-xl flex justify-center items-center">
-                    <p className="text-4xl text-white text-center">
+                    <p className="text-4xl text-white text-center" style={{
+                        backgroundClip: "text",
+                        background: "linear-gradient(45deg, #fd267a, #ff6036)",
+                        WebkitBackgroundClip: "text",
+                        color: "transparent"
+                    }}>
                         Direct
                         <br />
                         Message
@@ -200,30 +206,8 @@ export default function Home() {
                 </div>
             </div>
         </article>
-        <article className="w-full h-svh flex items-center justify-center">
-            <DoubleText
-                title="MY MOTTO"
-                mainText={
-                    <span>
-                        <span style={{ color: "var(--color-accent)" }}>
-                            Front-End Developer
-                        </span>
-                    </span>
-                }
-                mainHideText={
-                    <span>
-                        <span className="text-white">
-                            Front-End Developer
-                        </span>
-                    </span>
-                }
-                textCenter
-                id={1}
-                textSize={32}
-            />
-        </article>
-        <article className="w-full h-svh flex items-center justify-center">
-            
+        <article className="w-full h-svh flex items-center justify-center px-4">
+            <TextReviewOnScroll title='MY MOTTO' text='Why Spend 8  Hours Building Someone Else Dream But Can Not Spend 1 To Build Your'/>
         </article>
     </main>
 
