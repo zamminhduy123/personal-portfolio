@@ -5,19 +5,19 @@
 @font-face {
   font-family: "MonumentBlack";   /*Can be any text*/
   src: local("MonumentExtended-Black"),
-    url("../static/fonts/PPMonumentExtended-Black.otf") format("truetype");
+    url("../../public/static/fonts/PPMonumentExtended-Black.otf") format("truetype");
 }
 
 @font-face {
   font-family: "MonumentRegular";   /*Can be any text*/
   src: local("MonumentExtended"),
-    url("../static/fonts/PPMonumentExtended-Regular.otf") format("truetype");
+    url("../../public/static/fonts/PPMonumentExtended-Regular.otf") format("truetype");
 }
 
 @font-face {
   font-family: "MonumentLight";   /*Can be any text*/
   src: local("MonumentExtended-Thin"),
-    url("../static/fonts/PPMonumentExtended-Light.otf") format("truetype");
+    url("../../public/static/fonts/PPMonumentExtended-Light.otf") format("truetype");
 }
 
 

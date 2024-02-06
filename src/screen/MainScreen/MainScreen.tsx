@@ -10,6 +10,7 @@ import gsap from 'gsap'
 //utils
 import { disableScroll, enableScroll } from "@utils/scroll-utils"
 import LoadingScreen from '../LoadingScreen'
+import loadingBg from '@static/loadingbg.png'
 
 type Props = {
   contextSafe: ContextSafeFunc
@@ -87,10 +88,12 @@ const MainScreen = ({ contextSafe }: Props) => {
         className={clsx(
           "w-full h-svh flex items-center justify-center gap-32",
           "bg-black",
-          `bg-[url('../static/loadingbg.png')]`,
           "bg-no-repeat bg-center bg-cover",
           "overflow-clip"
         )}
+        style={{
+          background: `url(${loadingBg.src})`,
+        }}
       >
         <div className='w-full h-full flex items-center justify-between ' style={{ maxWidth: 640, gap: 32 }}>
           <div className='w-full h-full flex-1'>
