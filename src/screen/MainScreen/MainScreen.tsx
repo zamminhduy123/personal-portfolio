@@ -92,7 +92,7 @@ const MainScreen = ({ contextSafe }: Props) => {
           "overflow-clip"
         )}
         style={{
-          background: `url(${loadingBg.src})`,
+          background: `url(/static/loadingbg.png)`,
         }}
       >
         <div className='w-full h-full flex items-center justify-between ' style={{ maxWidth: 640, gap: 32 }}>

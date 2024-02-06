@@ -1,9 +1,6 @@
 "use client"
 import Image from 'next/image'
-import DUYsvg from '@static/DUY.svg'
-import myAvatar from '@static/avatar.png'
 import zalobg from '@static/zalobg.png'
-import zalotext from '@static/ZALO.png'
 import dm2 from '@static/dm2.png'
 import dm1 from '@static/dm1.png'
 import dr_logo from '@static/logo.png'
@@ -18,13 +15,6 @@ import DreamLauncherLogo from '@/components/DreamLauncherLogo'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import React from 'react'
-import avatar from '@static/avatar.jpg'
-import avatarNoBg from '@static/avatar-no-bg.png'
-import MyAvatar from '@/components/MyAvatar'
-import LoadingScreen from '@/screen/LoadingScreen'
-
-//utils
-import { disableScroll, enableScroll } from "@utils/scroll-utils"
 
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MainScreen from '@/screen/MainScreen'
