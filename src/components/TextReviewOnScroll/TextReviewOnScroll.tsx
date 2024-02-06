@@ -29,7 +29,7 @@ const TextReviewOnScroll = ({ text, title, dimColor = "#999999", color = "#00000
                     start: "top center",
                     end: "+=100",
                     scrub: true,
-                    markers: true,
+                    // markers: true,
                 }
             }
         )
@@ -43,7 +43,7 @@ const TextReviewOnScroll = ({ text, title, dimColor = "#999999", color = "#00000
                     start: "+=100 center",
                     end: "center center",
                     scrub: true,
-                    markers: true,
+                    // markers: true,
                 }
             }
         )
