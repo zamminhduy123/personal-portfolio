@@ -75,7 +75,7 @@ export default function Home() {
         </article>
         <SelectedWorkScreen contextSafe={contextSafe}/>
         <article className="w-full flex items-center justify-center px-4 bg-white" style={{height: "120svh"}}>
-            <TextReviewOnScroll title='MY MOTTO' titleColor='var(--color-accent)' text={<span>If you can spend 8 hours building<br/>someone else's dream,<br/>you can spend 1 hour building<br/>your own.</span>}/>
+            <TextReviewOnScroll title='MY MOTTO' titleColor='var(--color-accent)' text={<span>If you can spend 8 hours building<br/>someone else&apos;s dream,<br/>you can spend 1 hour building<br/>your own.</span>}/>
         </article>
     </main>
 
