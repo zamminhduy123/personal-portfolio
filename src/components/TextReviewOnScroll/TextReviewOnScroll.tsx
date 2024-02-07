@@ -7,15 +7,16 @@ import { IncrementalID } from '@/utils/common-utils'
 
 type Props = {
     title?: string
-    text: string,
+    text: string | React.ReactNode,
 
     textSize?: string,
     dimColor?: string,
+    titleColor?: string,
     color?: string
 }
 const idIncremental = new IncrementalID();
 
-const TextReviewOnScroll = ({ text, title, dimColor = "#999999", color = "#000000", textSize = "3rem" }: Props) => {
+const TextReviewOnScroll = ({ text, title, dimColor = "#999999", color = "#000000", textSize = "3rem", titleColor = "#000000" }: Props) => {
     const ref = React.useRef<HTMLSpanElement | null>(null);
     const id = React.useRef(idIncremental.getId())
 
@@ -29,6 +30,7 @@ const TextReviewOnScroll = ({ text, title, dimColor = "#999999", color = "#00000
                     start: "top center",
                     end: "+=100",
                     scrub: true,
+                    // pin: true,
                     // markers: true,
                 }
             }
@@ -44,6 +46,7 @@ const TextReviewOnScroll = ({ text, title, dimColor = "#999999", color = "#00000
                     end: "center center",
                     scrub: true,
                     // markers: true,
+                    // pin: true,
                 }
             }
         )
@@ -55,7 +58,7 @@ const TextReviewOnScroll = ({ text, title, dimColor = "#999999", color = "#00000
                 className={clsx("bg-no-repeat")}
                 style={{
                     color: "hsl(0 0% 0% / 0.2)",
-                    backgroundImage: `linear-gradient(90deg, ${color}, ${color})`,
+                    backgroundImage: `linear-gradient(90deg, ${titleColor}, ${titleColor})`,
                     zIndex: 1,
                     backgroundSize: "0% 100%",
                     backgroundClip: "text",
