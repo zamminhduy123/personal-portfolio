@@ -15,9 +15,9 @@ const DreamLauncherLogo = () => {
 
     const onMouseEnter = contextSafe(() => {
         if (!animationRef.current.length) {
-            animationRef.current.push(gsap.to("#dl-logo", {translateX: "-100%", scale: 0.5, duration: 0.6}))
+            animationRef.current.push(gsap.to("#dl-logo", {translateX: -((containerRef.current?.clientWidth || 0) /3.5), scale: 0.5, duration: 0.6}))
             animationRef.current.push(gsap.to("#dl-white", {width: "25%", duration: 0.4}))
-            animationRef.current.push(gsap.fromTo("#dl-logo-text", {translateX: "-50%", duration: 0.6},  {translateX: "40%", duration: 0.6}))
+            animationRef.current.push(gsap.fromTo("#dl-logo-text", {translateX: "-50%", duration: 0.6},  {translateX: "45%", duration: 0.6}))
             animationRef.current.push(gsap.to("#dl-logo-ring", {rotate: 270, duration: 0.6}))
         } else {
             animationRef.current.forEach(anim => anim.restart())
@@ -38,7 +38,7 @@ const DreamLauncherLogo = () => {
             </div>
             <div id="dl-white" className='absolute bg-white h-full w-1/2' style={{zIndex: 1, left: 0}}/>
             <div id="dl-logo-text" className='absolute' style={{transform: "translateX(-50%)"}}>
-                <Image id='dl-logo-text' alt="dl_text" src={dl_text} style={{width: "80%"}}/>
+                <Image id='dl-logo-text' alt="dl_text" src={dl_text} style={{width: "70%"}}/>
             </div>
         </div>
     )
