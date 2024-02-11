@@ -89,21 +89,23 @@ const MainScreen = ({ contextSafe }: Props) => {
           "w-full h-svh flex items-center justify-center gap-32",
           "bg-black",
           "bg-no-repeat bg-center bg-cover",
-          "overflow-clip"
+          "overflow-clip",
+          "p-4"
         )}
         style={{
           background: `url(/static/loadingbg.png)`,
         }}
       >
-        <div className='w-full h-full flex items-center justify-between ' style={{ maxWidth: 640, gap: 32 }}>
+        <div className='w-full h-full flex items-center justify-between' style={{ maxWidth: 640, gap: 32 }}>
           <div className='w-full h-full flex-1'>
             <div className='w-full h-full relative flex items-center justify-center text-white'>
               <div className='w-full absolute' style={{ zIndex: 2 }}>
                 <Image src={avatarNoBg} alt='me' className='rounded-xl' id="article-1-img" onLoad={() => countImageLoadDone()}/>
               </div>
               <div className='absolute rotate-90' style={{ zIndex: 1 }}>
-                <p id="article-1-duy" className={clsx("w-fit", "font-semibold", "cursor-default", "origin-center", "text-white")}
-                  style={{ fontSize: "20rem", letterSpacing: "2.5rem" }}>
+                <p id="article-1-duy" 
+                  className={clsx("w-fit", "main-screen-big-text", "font-semibold", "cursor-default", "origin-center", "text-white"
+                  )}>
                   <span>DUY</span>
                   <span>DUY</span>
                   <span>DUY</span>
@@ -120,8 +122,8 @@ const MainScreen = ({ contextSafe }: Props) => {
               </div>
             </div>
           </div>
-          <div className='flex flex-1 flex-col'>
-            <p id='article-1-hi' className='text-5xl font-black text-white text-animation-appear' 
+          <div className='flex flex-1 flex-col text-2xl sm:text-5xl'>
+            <p id='article-1-hi' className='font-black text-white text-animation-appear' 
               style={{ letterSpacing: "5px", lineHeight: 1.5, clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}
             >
               <span>안</span>
@@ -131,7 +133,7 @@ const MainScreen = ({ contextSafe }: Props) => {
               <span>요</span>
               <span>{","}</span>
               </p>
-              <p id='article-1-hi' className='text-5xl font-black text-white text-animation-appear' 
+              <p id='article-1-hi' className='font-black text-white text-animation-appear' 
               style={{ letterSpacing: "5px", lineHeight: 1.5, clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}
             >
               <span className='mr-1'>I&apos;M</span>

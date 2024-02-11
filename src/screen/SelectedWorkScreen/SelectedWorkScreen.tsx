@@ -12,6 +12,7 @@ import Image from 'next/image';
 import React from 'react'
 import { ContextSafeFunc } from '@gsap/react';
 import DreamLauncherLogo from '@/components/DreamLauncherLogo';
+import { isMobileDevice } from '@/utils/common-utils'
 
 type Props = {
     contextSafe: ContextSafeFunc
@@ -38,11 +39,14 @@ const SelectedWorkScreen = ({contextSafe} : Props) => {
         );
       }, []);
 
+    const isMobile = isMobileDevice();
+
     return (
         <article className={clsx("w-full h-fit flex flex-col items-center justify-center pb-8 bg-black")} ref={containerRef}>
             <div
                 className={clsx(
-                    "grid grid-cols-10 grid-rows-7 w-full gap-5 text-black"
+                    "w-full gap-5 text-black",
+                    isMobile ? "flex flex-col px-4" : "grid grid-cols-10 grid-rows-7"
                 )}
                 style={{ height: "70svh" }}
             >
@@ -64,7 +68,7 @@ const SelectedWorkScreen = ({contextSafe} : Props) => {
                         subTitle="2022-2024"
                     />
                 </div>
-                <div className="col-start-6 col-end-10 bg-white row-start-1 row-end-8 rounded-xl flex justify-center items-center relative overflow-clip">
+                <div className="col-start-6 col-end-10 bg-white row-start-1 row-end-8 rounded-xl flex justify-center items-center relative overflow-clip h-full">
                     <ImageTextPopOut
                         image={zalobg}
                         text="ZALO"
@@ -75,10 +79,17 @@ const SelectedWorkScreen = ({contextSafe} : Props) => {
                 </div>
             </div>
             <div
-                className="grid grid-cols-10 grid-rows-11 w-full gap-5 text-black mt-4"
+                className={clsx(
+                    "w-full gap-5 text-black mt-4",
+                    isMobile ? "flex flex-col px-4" : "grid grid-cols-10 grid-rows-11")}
                 style={{ height: "110svh" }}
             >
-                <div className="col-start-2 col-end-7 row-start-1 row-end-6  rounded-xl overflow-hidden relative flex justify-center ">
+                <div className={clsx(
+                    isMobile ? "" : "col-start-2 col-end-7 row-start-1 row-end-6",
+                    "rounded-xl overflow-hidden relative flex justify-center")}
+                    style={{
+                        flex: 2
+                    }}>
                     <ImageTextPopOut
                         image={dm2}
                         text="DM"
@@ -87,7 +98,7 @@ const SelectedWorkScreen = ({contextSafe} : Props) => {
                         showOnHover
                     />
                 </div>
-                <div className="col-start-7 col-end-10 row-start-1 row-end-6 rounded-xl flex justify-center items-center">
+                <div className="flex-0 col-start-7 col-end-10 row-start-1 row-end-6 rounded-xl flex justify-center items-center">
                     <p className="text-4xl text-white text-center" style={{
                         backgroundClip: "text",
                         background: "linear-gradient(45deg, #fd267a, #ff6036)",
@@ -101,6 +112,7 @@ const SelectedWorkScreen = ({contextSafe} : Props) => {
                 </div>
                 <div
                     className="col-start-2 col-end-10 row-start-6 row-end-12 rounded-xl relative bg-white flex items-end p-4 overflow-clip"
+                    style={{flex: 3}}
                     onMouseEnter={contextSafe(() => {
                         gsap.to("#dm1", { scale: 1.2 });
                         setIsOnDM1(true);
@@ -134,17 +146,20 @@ const SelectedWorkScreen = ({contextSafe} : Props) => {
                     />
                 </div>
             </div>
-            <div id="dr-container" className="grid grid-cols-10 grid-rows-10 w-full h-svh gap-5 text-black mt-4">
-                <div className="col-start-2 col-end-5 row-start-1 row-end-4 bg-white rounded-xl overflow-hidden relative flex justify-center ">
+            <div id="dr-container" className={clsx(
+                "w-full h-svh gap-5 text-black mt-4",
+                isMobile ? "flex flex-col px-4" : "grid grid-cols-10 grid-rows-10")}>
+                <div style={{ flex: 2 }} className="col-start-2 col-end-5 row-start-1 row-end-4 bg-white rounded-xl overflow-hidden relative flex justify-center ">
                     <DreamLauncherLogo />
                 </div>
                 <div className="col-start-5 col-end-10 row-start-1 row-end-4 bg-white rounded-xl overflow-hidden relative flex justify-center">
-                    <div className="flex flex-col text-4xl justify-center font-semibold text-[#3AA7DE]">
+                    <div className="flex flex-col text-xl sm:text-4xl justify-center font-semibold text-[#3AA7DE]">
                         <p>#IDO Platform</p>
                         <p>#Blockchain</p>
                     </div>
                 </div>
                 <div
+                    style={{ flex: 3 }}
                     className={clsx(
                         "w-full",
                         "h-full",

@@ -1,0 +1,15 @@
+.main-screen-big-text {
+    font-size: 10rem;
+    letter-spacing: 1.5rem;
+}
+
+.main-screen-hi-text {
+    
+}
+
+@media (min-width: 640px) { 
+    .main-screen-big-text {
+        font-size: 20rem;
+        letter-spacing: 2.5rem;
+    }
+}
