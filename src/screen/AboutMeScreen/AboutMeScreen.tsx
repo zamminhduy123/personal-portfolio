@@ -5,13 +5,12 @@ import clsx from 'clsx'
 import React from 'react'
 
 const AboutMeScreen = () => {
-    console.log("window.navigator.userAgent",window.navigator.userAgent)
     const isMobile = React.useMemo(() => isMobileDevice(), []);
     return (
         <article className={clsx("w-full h-svh flex items-center justify-center")}>
             <DoubleText
                 title="about me"
-                textSize={window.innerWidth <= 650 ? 16 : 24}
+                textSize={isMobile ? 16 : 24}
                 mainText={
                     <span>
                         I&apos;m Duy, a{" "}
