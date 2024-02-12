@@ -39,7 +39,7 @@ const SelectedWorkScreen = ({contextSafe} : Props) => {
         );
       }, []);
 
-    const isMobile = isMobileDevice();
+    const isMobile = React.useMemo(isMobileDevice, []);
 
     return (
         <article className={clsx("w-full h-fit flex flex-col items-center justify-center pb-8 bg-black")} ref={containerRef}>

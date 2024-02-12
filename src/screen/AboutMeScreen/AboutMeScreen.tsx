@@ -6,6 +6,7 @@ import React from 'react'
 
 const AboutMeScreen = () => {
     console.log("window.navigator.userAgent",window.navigator.userAgent)
+    const isMobile = React.useMemo(() => isMobileDevice(), []);
     return (
         <article className={clsx("w-full h-svh flex items-center justify-center")}>
             <DoubleText
@@ -38,7 +39,7 @@ const AboutMeScreen = () => {
                         I need friends! 🥲
                     </span>
                 }
-                showButton={isMobileDevice()}
+                showButton={isMobile}
             />
         </article>
     )

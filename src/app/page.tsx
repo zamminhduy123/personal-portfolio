@@ -24,7 +24,7 @@ export default function Home() {
         if (containerRef.current) containerRef.current.scrollTop = 0;
     }, [])
 
-    const isMobileDev = isMobileDevice()
+    const isMobileDev = React.useMemo(() => isMobileDevice(), []);
 
     return <main
         className={clsx(
