@@ -7,7 +7,7 @@ export class IncrementalID {
 }
 
 export const isMobileDevice = () => {
-    if (window)
+    if (global?.window)
         return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(window.navigator.userAgent);
 
     return false;
