@@ -18,16 +18,16 @@ const Header = () => {
             >
                 DUY.NGUYEN
             </div>
-            <div className='grid grid-cols-4 items-center' style={{ fontSize: 9 }}>
+            <div className='grid grid-cols-2 items-center pr-4' style={{ fontSize: 9 }}>
                 <div className='col-start-1 flex justify-center px-4'>
                     <TurnText text="about" onClick={() => document.getElementById("about-me-section")?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })} />
                 </div>
                 <div className='col-start-2 text-center px-4'>
                     <TurnText text={<>selected<br />works</>} onClick={() => document.getElementById("selected-works")?.scrollIntoView({ behavior: "smooth" })} />
                 </div>
-                <div className='col-start-3 col-span-2 flex justify-center px-4'>
+                {/* <div className='col-start-3 col-span-2 flex justify-center px-4'>
                     <Button variant="contained" size='sm' className='w-full' onClick={() => {}}>Hey</Button>
-                </div>
+                </div> */}
             </div>
         </div>
     )
