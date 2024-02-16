@@ -18,8 +18,42 @@ const LoadingScreen = (props : LoadingScreenProps) => {
         gsap.to("#loading-bg", {opacity: 1});
     }
 
-    React.useLayoutEffect(() => {
-        click();
+    React.useEffect(() => {
+        document.querySelector("body")!.scrollTo({top: 0, behavior: "instant"})
+        let clicked = false;
+        const loadDone = () => {
+            if (!clicked) {
+                clicked = true;
+                click();
+            }
+        }
+        let timeout = setTimeout(() => {
+            loadDone();
+        }, 5000)
+        const images = Array.from(window.document.querySelectorAll("img"));
+
+        const proms = images.map(im => new Promise(res => {
+            if (im) {
+                im.onload = () => { res(true) };
+                im.onerror = () => { res(true) };
+                if (im.complete) {
+                    res(true)
+                }
+            }
+            res(true)
+        }))
+
+        // list all image widths and heights _after_ the images have loaded:
+        Promise.all(proms).then(data=>{
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                loadDone();
+            }, 200);
+        })
+
+        return () => {
+            timeout && clearTimeout(timeout);
+        }
     }, []);
 
     
@@ -28,7 +62,7 @@ const LoadingScreen = (props : LoadingScreenProps) => {
             id="loading-screen"
             className={clsx(
                 "w-full flex min-h-screen flex-col items-center justify-center",
-                "absolute",
+                "fixed",
             )}  
             style={{zIndex: 1000}}
             onClick={click}

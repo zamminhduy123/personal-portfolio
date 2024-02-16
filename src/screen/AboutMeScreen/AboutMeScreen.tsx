@@ -1,13 +1,14 @@
 "use client"
 import DoubleText from '@/components/DoubleText'
-import { isMobileDevice } from '@/utils/common-utils'
+import useIsMobile from '@/hooks/useIsMobile'
 import clsx from 'clsx'
 import React from 'react'
 
 const AboutMeScreen = () => {
-    const isMobile = React.useMemo(() => isMobileDevice(), []);
+    const isMobile = useIsMobile();
+
     return (
-        <article className={clsx("w-full h-svh flex items-center justify-center")}>
+        <article className={clsx("w-full h-svh flex items-center justify-center")} id="about-me-section" style={{zIndex: 1}}>
             <DoubleText
                 title="about me"
                 textSize={isMobile ? 16 : 24}

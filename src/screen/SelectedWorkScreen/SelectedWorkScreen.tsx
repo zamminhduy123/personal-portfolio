@@ -12,7 +12,7 @@ import Image from 'next/image';
 import React from 'react'
 import { ContextSafeFunc } from '@gsap/react';
 import DreamLauncherLogo from '@/components/DreamLauncherLogo';
-import { isMobileDevice } from '@/utils/common-utils'
+import useIsMobile from '@/hooks/useIsMobile'
 
 type Props = {
     contextSafe: ContextSafeFunc
@@ -26,7 +26,8 @@ const SelectedWorkScreen = ({contextSafe} : Props) => {
         gsap.to(
             containerRef.current,
             {
-                backgroundColor: "white",
+                // backgroundColor: "white",
+                // translateY: "-30%",
                 scrollTrigger: {
                     trigger: "#dr-container",
                     start: "center center",
@@ -37,12 +38,34 @@ const SelectedWorkScreen = ({contextSafe} : Props) => {
                 }
             }
         );
+
+        const upperSection = (document.querySelector("#about-me-section div") as HTMLElement)!;
+        console.log(upperSection.clientHeight)
+        gsap.fromTo(
+            upperSection,
+            {
+                translateY: 0,
+                opacity: 1
+            },
+            {
+                opacity: 0,
+                translateY: `${(upperSection.clientHeight) / 2}px`,
+                scrollTrigger: {
+                    trigger: "#selected-works",
+                    start: "10% bottom",
+                    end: `+=${upperSection?.clientHeight} bottom`,
+                    // markers: true,   
+                    scrub: true,
+                }
+            }
+        )
+
       }, []);
 
-    const isMobile = React.useMemo(isMobileDevice, []);
+    const isMobile = useIsMobile();
 
     return (
-        <article className={clsx("w-full h-fit flex flex-col items-center justify-center pb-8 bg-black")} ref={containerRef}>
+        <article id="selected-works" className={clsx("w-full h-fit flex flex-col items-center justify-center pb-8 bg-black")} ref={containerRef} style={{zIndex :  2}}>
             <div
                 className={clsx(
                     "w-full gap-5 text-black",

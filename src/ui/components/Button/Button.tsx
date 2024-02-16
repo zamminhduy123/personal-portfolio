@@ -7,6 +7,7 @@ type ButtonProps = {
     className?: string;
 
     size?: "sm" | "m" | "l";
+    onClick: () => void;
 
     children?: React.ReactNode | string | JSX.Element
 }
@@ -17,6 +18,7 @@ const Button = (props: ButtonProps) => {
         className = "",
         type = "accent",
         size = "m",
+        onClick,
         // fullWidth = false
     } = props;
 
@@ -30,7 +32,7 @@ const Button = (props: ButtonProps) => {
     }
     
     return (
-        <div className={clsx(sizeClass, className, "text-center", "rounded")} style={style}>
+        <div className={clsx(sizeClass, className, "text-center", "rounded", "cursor-pointer")} style={style} onClick={onClick}>
             {props.children}
         </div>
     )

@@ -7,13 +7,8 @@ export class IncrementalID {
 }
 
 export const isMobileDevice = () => {
-    if (global?.window) {
-        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(global?.window?.navigator?.userAgent)) {
-            return true;
-        }
-
-        return (global.window?.innerWidth || 0) <= 800;
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(window?.navigator?.userAgent)) {
+        return true;
     }
-
-    return true;
+    return (window?.innerWidth || 0) <= 800;
 }

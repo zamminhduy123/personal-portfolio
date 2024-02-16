@@ -41,15 +41,15 @@ const DoubleText = (props: DoubleTextProps) => {
     const [isMouseOn, setIsMouseOn] = React.useState(false);
 
     const onMouseMove = React.useCallback((e : MouseEvent) => {
-        let left =  e.clientX;
-        let top =  e.clientY + window.scrollY - (containerRef.current?.offsetTop || 0);
+        let left =  e.clientX, top =  e.clientY;
+        const heightGap = window.scrollY - (containerRef.current?.offsetTop || 0);
         if (absoluteRef.current) {  
-            setPosState({left,top})
+            setPosState({left,top: top+heightGap})
         }
         if (mainTextRef.current) {
             const rect = mainTextRef.current.getBoundingClientRect();
-            // console.log(top,  rect.top + window.scrollY - (containerRef.current?.scrollHeight || 0), rect.top+rect.height + window.scrollY - (containerRef.current?.scrollHeight || 0))
-            if (inside(top, rect.top + window.scrollY - (containerRef.current?.offsetTop || 0), rect.top+rect.height + window.scrollY - (containerRef.current?.offsetTop || 0)) && 
+            // console.log(e.clientY, window.scrollY, containerRef.current?.offsetTop, rect.top);
+            if (inside(top+heightGap, rect.top + heightGap, rect.top+rect.height + heightGap) && 
                 inside(left, rect.left, rect.left+rect.width)) {
                 setIsMouseOn(true);
             } else {
@@ -84,20 +84,20 @@ const DoubleText = (props: DoubleTextProps) => {
             onMouseLeave={() =>  containerRef.current?.removeEventListener("mousemove", onMouseMove)}>
             <div
                 id={`double-text-orange-${id}`}
-                className={"w-full h-full text-black flex justify-center items-center absolute"}
+                className={"w-full h-full text-black grid grid-cols-10 items-center absolute"}
                 style={{ background: "var(--color-accent)", zIndex: 1, clipPath: `circle(${isMouseOn ? "20%" : "1%"} at ${posState.left}px ${posState.top}px`}}
                 ref={absoluteRef}
                 key={`double-text-orange-${id}`}    
             >
-                <div className="flex flex-col w-3/4 gap-2">
+                <div className="w-full col-start-2 col-end-10 gap-2">
                     <p className="text-xs">{titleHideText || title}</p>
                     <p className="uppercase" style={{fontSize: textSize}}>
                         {mainHideText}
                     </p>
                 </div>
             </div>
-            <div className="w-full h-full bg-black text-white flex justify-center items-center" >
-                <div className="h-fit flex flex-col w-3/4 gap-2" ref={mainTextRef}>
+            <div className="w-full h-full bg-black text-white grid grid-cols-10 items-center" >
+                <div className="h-fit flex flex-col w-full col-start-2 col-end-10 gap-2" ref={mainTextRef}>
                     <p className="text-xs">{title}</p>
                     <p className="uppercase" style={{fontSize: textSize}}>
                         {mainText}
@@ -117,8 +117,10 @@ const DoubleText = (props: DoubleTextProps) => {
                         backgroundColor: "var(--color-accent)",
                         color: "white",
                         bottom: "10%",
-                        zIndex: 2
+                        zIndex: 4
                     }}
+                    onMouseDown={onMouseDownOnButton}
+                    onMouseUp={onMouseUpOnButton}
                     onTouchStart={onMouseDownOnButton}
                     onTouchEnd={onMouseUpOnButton}
                 >
