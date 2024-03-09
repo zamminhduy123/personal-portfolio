@@ -10,5 +10,5 @@ export const isMobileDevice = () => {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(window?.navigator?.userAgent)) {
         return true;
     }
-    return (window?.innerWidth || 0) <= 800;
+    return false;
 }
