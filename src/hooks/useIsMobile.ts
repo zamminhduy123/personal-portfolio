@@ -2,11 +2,9 @@
 
 import { isMobileDevice } from '@/utils/common-utils';
 import React from 'react'
-import useWindowDimensions from './useDimension';
 
 const useIsMobile = () => {
     const [isMobile, setIsMobile] = React.useState(false);
-    const {width} = useWindowDimensions();
 
     React.useLayoutEffect(() => {
         if (isMobileDevice()) {
@@ -14,7 +12,7 @@ const useIsMobile = () => {
         }   
     }, []);
 
-    return isMobile || width < 600;
+    return isMobile;
 }
 
 export default useIsMobile
