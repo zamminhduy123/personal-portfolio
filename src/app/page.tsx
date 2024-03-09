@@ -12,6 +12,9 @@ import SelectedWorkScreen from '@/screen/SelectedWorkScreen'
 import AboutMeScreen from '@/screen/AboutMeScreen'
 import useIsMobile from '@/hooks/useIsMobile'
 import LoadingScreen from '@/screen/LoadingScreen'
+import WiggleButton from '@/components/WiggleButton'
+import DoubleText from '@/components/DoubleText'
+import ContactScreen from '@/screen/ContactScreen'
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
@@ -36,7 +39,7 @@ export default function Home() {
         <AboutMeScreen/>
         <SelectedWorkScreen contextSafe={contextSafe}/>
 
-        <article className="w-full h-svh" 
+        <article className="w-full h-fit" 
         >
             <div className='w-full h-fit flex items-center justify-center py-16'>
                 <TextReviewOnScroll 
@@ -47,6 +50,8 @@ export default function Home() {
                         text={<span className='font-light'>We are what we <strong>repeatedly do.</strong><br/>Excellence, then, is<br/><strong>not an act, but a habit.</strong></span>}/>
             </div>
         </article>
+
+        <ContactScreen/>
     </main>
 
 }

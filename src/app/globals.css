@@ -20,6 +20,13 @@
     url("../../public/static/fonts/PPMonumentExtended-Light.otf") format("truetype");
 }
 
+.light-font {
+  font-family: "MonumentLight";
+}
+.black-font {
+  font-family: "MonumentBlack";
+}
+
 
 :root {
   --foreground-rgb: 0, 0, 0;

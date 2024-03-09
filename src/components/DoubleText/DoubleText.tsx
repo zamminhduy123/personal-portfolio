@@ -30,7 +30,7 @@ const DoubleText = (props: DoubleTextProps) => {
         id = 0,
         textSize = 24,
 
-        showButton
+        showButton = false
     } = props;
     const absoluteRef = React.useRef<HTMLDivElement | null>(null), containerRef = React.useRef<HTMLDivElement | null>(null),
         mainTextRef =  React.useRef<HTMLDivElement | null>(null);
