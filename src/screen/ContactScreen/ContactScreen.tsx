@@ -86,25 +86,27 @@ const ContactScreen = () => {
                 <div className='flex flex-col flex-1 h-full gap-6'>
                     <div className='text-5xl opacity-50 cursor-default'>Coffee?</div>
                     <div className='text-5xl mb-8 cursor-default'>Let’s Connect.</div>    
-                    <div id="contact-email" className='text-base mb-8 cursor-default w-fit overflow-x-hidden' 
+                    <div id="contact-email" className='text-base mb-8 cursor-pointer w-fit overflow-x-hidden' 
                         onMouseEnter={onMouseEnterEmail} 
-                        onMouseLeave={onMouseLeaveEmail}>
+                        onMouseLeave={onMouseLeaveEmail}
+                        onClick={() => window.open("mailto:ntminhduy123@gmail.com")}
+                    >
                         ntminhduy123@gmail.com
                         <div className='w-full my-4 rounded-full -translate-x-full' style={{height: "0.2rem", background: "var(--color-accent)"}}></div>
                     </div>    
                     <div className='flex gap-8 relative'>
                     <div className='w-16 h-16 flex justify-center items-center'>
-                            <WiggleButton id={0}>
+                            <WiggleButton id={0} onClick={() => {window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")}}>
                                 <Image id='insta' alt="insta" src={insta}/>
                             </WiggleButton>
                         </div>
                         <div className='w-16 h-16 flex justify-center items-center'>
-                            <WiggleButton id={1}>
+                            <WiggleButton id={1} onClick={() => window.open("https://www.linkedin.com/in/duy-nguy%E1%BB%85n/")}>
                                 <Image id='linkedin' alt="linkedin" src={linkedin}/>
                             </WiggleButton>
                         </div>
                         <div className='w-16 h-16 flex justify-center items-center'>
-                            <WiggleButton id={2}>
+                            <WiggleButton id={2} onClick={() => window.open("https://twitter.com/rzy148")}>
                                 <Image id='github' alt="github" src={github}/>
                             </WiggleButton>
                         </div>

@@ -3,7 +3,8 @@ import gsap, { Back, Power4 } from 'gsap'
 
 
 type WiggleButtonProps = {
-    id : number
+    id : number,
+    onClick: Function,
     children: React.ReactNode
 }
 
@@ -30,7 +31,7 @@ const WiggleButton = (props : WiggleButtonProps) => {
         gsap.to(`#${id}`,{
             x: center.w - wiggleRect?.width/2,
             y: center.h - wiggleRect?.height/2,
-            backgroundColor: "transparent",
+            backgroundSize: "0% 0%",
             color: "white",
             ease: Back.easeInOut
         })
@@ -43,12 +44,12 @@ const WiggleButton = (props : WiggleButtonProps) => {
 
     const onMouseEnter = () => {
         gsap.fromTo(`#${id}`,{
-            backgroundColor: "transparent",
+            backgroundSize: "0% 0%",
             color: "white",
         }, {
-            background: "var(--color-accent)",
+            ease: Back.easeInOut,
+            backgroundSize: "100% 100%",
             color: "black",
-            ease: Back.easeInOut
         })
         containerRef.current?.addEventListener("mousemove", onMouseMove)
     }
@@ -71,7 +72,14 @@ const WiggleButton = (props : WiggleButtonProps) => {
             onMouseLeave={onMouseLeave}
             ref={containerRef}    
         >
-            <div id={id} ref={wiggleRef} className="w-3/4 h-3/4 rounded-full flex items-center justify-center overflow-hidden absolute inset-0 pointer-events-none">
+            <div id={id} onClick={() => props.onClick()} ref={wiggleRef} className="w-3/4 h-3/4 text-white rounded-full flex items-center justify-center overflow-hidden absolute inset-0 cursor-pointer"
+                style={{
+                    backgroundImage: "linear-gradient(var(--color-accent), var(--color-accent))",
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: "0% 0%",
+                    backgroundPosition: "center center"
+                }}
+            >
                 {props.children}
             </div>
         </div>

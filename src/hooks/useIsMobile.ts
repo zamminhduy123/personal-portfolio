@@ -15,7 +15,7 @@ const useIsMobile = () => {
     }, []);
 
     React.useEffect(() => {
-        setIsMobile(width <= 600)
+        if (width) setIsMobile(width <= 600)
     }, [width])
 
     return isMobile;
